@@ -11,30 +11,26 @@ import java.util.Random;
 public class Game extends Canvas implements Runnable{
 
     private static final long serialVersionUID = -6261436164361361187L;
-    
     private boolean running = false;
     private Thread thread;
-    
     public static int WIDTH, HEIGHT;
-    
-    private BufferedImage level = null;
+    public BufferedImage level = null;
+    public static int LEVEL = 1;
     
     Handler handler;
     Camera cam;
     
+   
     private void init(){
         WIDTH = getWidth();
         HEIGHT = getHeight();
         
         BufferedImageLoader loader = new BufferedImageLoader();
         level = loader.loadImage("level.png");
-        handler = new Handler();
         cam = new Camera(0, 0);
-        LoadImageLevel(level);
-        //handler.addObject(new Player(100, 100, handler, ObjectId.Player));
+        handler = new Handler(cam);
         
-        //handler.createLevel();
-        
+        handler.LoadImageLevel(level);
         this.addKeyListener(new KeyInput(handler));
     }
     
@@ -95,32 +91,13 @@ public class Game extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D) g;
 
-        g.setColor(Color.BLACK);
+        g.setColor(Color.BLACK); // Change background color
         g.fillRect(0, 0, getWidth(), getHeight());
         g2d.translate(cam.getX(), cam.getY());
             handler.render(g);
         g2d.translate(-cam.getX(), -cam.getY());
         g.dispose();
         bs.show();
-    }
-    
-    private void LoadImageLevel(BufferedImage image){
-        int w = image.getWidth();
-        int h = image.getHeight();
-        
-        System.out.println("width, height: " + w + h);
-        
-        for(int xx = 0; xx <h; xx++){
-            for(int yy = 0; yy < w; yy++){
-                int pixel = image.getRGB(xx, yy);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
-                
-                if(red == 255 && green == 255 & blue ==255) handler.addObject(new Block(xx*32, yy*32, ObjectId.Block));
-                if(red == 255 && green == 0 & blue ==0) handler.addObject(new Player(xx*32, yy*32, handler, ObjectId.Player));
-            }
-        }
     }
     public static void main(String arg[]){
         new Window(800, 600, "Game", new Game());

@@ -17,16 +17,17 @@ import java.util.LinkedList;
  */
 public class Player extends GameObject{
 
-    private float width = 32, height = 32;
+    private float width = 32, height = 32; //Player size
 
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
-    
+    private Camera cam;
     private Handler handler;
     
-    public Player(float x, float y, Handler handler, ObjectId id) {
+    public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
+        this.cam = cam;
     }
 
     public void tick(LinkedList<GameObject> object) {
@@ -65,14 +66,17 @@ public class Player extends GameObject{
                 if(getBoundsLeft().intersects(tempObject.getBounds())){
                     x = tempObject.getX() + width;
                 }
-                
-                
+            }else if(tempObject.getId() == ObjectId.Flag){
+                if(getBounds().intersects(tempObject.getBounds())){
+                handler.switchLevel();
+                cam.setX(0);
+                }
             }
         }
     }
     
     public void render(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(Color.green); //change player color
         g.fillRect((int)x,(int)y, (int)width, (int)height);
     }
 
@@ -86,7 +90,7 @@ public class Player extends GameObject{
         return new Rectangle((int) ((int)x+width-5),(int)y+5, (int)5, (int)height-10);
     }
     public Rectangle getBoundsLeft() {
-        return new Rectangle((int) ((int)x+width-5),(int)y+5, (int)5, (int)height-10);
+        return new Rectangle((int)x,(int)y+5, (int)5, (int)height-10);
     }
     
 }
