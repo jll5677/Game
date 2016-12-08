@@ -11,8 +11,9 @@ public class OptionsController {
     OptionsModel o_model;
     OptionsView o_view;
     MainModel m_model;
+    Player player;
     
-    OptionsController(final OptionsModel o_model, final OptionsView o_view, final MainModel m_model)
+    OptionsController(final OptionsModel o_model, final OptionsView o_view, final MainModel m_model, final Player player)
     {
         this.o_model = o_model;
         this.o_view = o_view;
@@ -24,14 +25,18 @@ public class OptionsController {
                 if(clickSource == o_view.redButton) {
                     o_model.setPlayerColor(Color.RED);
                     m_model.setPlayerColor(Color.RED);
+                    player.setPlayerColor(Color.RED);
+                    
                 }
                 if(clickSource == o_view.greenButton) {
                     o_model.setPlayerColor(Color.GREEN);
                     m_model.setPlayerColor(Color.GREEN);
+                    player.setPlayerColor(Color.GREEN);
                 }
                 if(clickSource == o_view.blueButton) {
                     o_model.setPlayerColor(Color.BLUE);
                     m_model.setPlayerColor(Color.BLUE);
+                    player.setPlayerColor(Color.BLUE);
                 }
                 if(clickSource == o_view.blackButton) {
                     o_model.setBackgroundColor(Color.BLACK);

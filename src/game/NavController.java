@@ -32,7 +32,7 @@ public class NavController {
         
         o_model = new OptionsModel();        
         o_view = new OptionsView(o_model);
-        o_controller = new OptionsController(o_model, o_view, m_model);
+        o_controller = new OptionsController(o_model, o_view, m_model, player);
         
         i_view = new InstructionView();
         c_view = new CreditsView();
