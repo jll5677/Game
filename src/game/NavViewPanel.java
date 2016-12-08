@@ -60,7 +60,7 @@ public class NavViewPanel extends JPanel{
     }
     
     public void addSplash(NavView n_view) {
-        //add(n_view, BorderLayout.CENTER);
+        add(n_view, BorderLayout.CENTER);
         revalidate();
         repaint();
     }
