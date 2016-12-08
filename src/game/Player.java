@@ -23,6 +23,7 @@ public class Player extends GameObject{
     private final float MAX_SPEED = 10;
     private Camera cam;
     private Handler handler;
+    Color playerColor;
     
     public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
         super(x, y, id);
@@ -76,7 +77,7 @@ public class Player extends GameObject{
     }
     
     public void render(Graphics g) {
-        g.setColor(Color.green); //change player color
+        g.setColor(this.playerColor); //change player color
         g.fillRect((int)x,(int)y, (int)width, (int)height);
     }
 
@@ -91,6 +92,10 @@ public class Player extends GameObject{
     }
     public Rectangle getBoundsLeft() {
         return new Rectangle((int)x,(int)y+5, (int)5, (int)height-10);
+    }
+    
+    public void setPlayerColor(Color playerColor) {
+        this.playerColor = playerColor;
     }
     
 }

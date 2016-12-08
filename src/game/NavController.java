@@ -20,6 +20,7 @@ public class NavController {
     CreditsView c_view;
     
     GamePanel g_panel;
+    Player player;
     
     public NavController(NavModel n_model, NavView n_view ) {
         this.n_model = n_model;
@@ -31,7 +32,7 @@ public class NavController {
         
         o_model = new OptionsModel();        
         o_view = new OptionsView(o_model);
-        o_controller = new OptionsController(o_model, o_view, m_model);
+        o_controller = new OptionsController(o_model, o_view, m_model, player);
         
         i_view = new InstructionView();
         c_view = new CreditsView();
