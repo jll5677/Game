@@ -99,7 +99,4 @@ public class Game extends Canvas implements Runnable{
         g.dispose();
         bs.show();
     }
-    public static void main(String arg[]){
-        new Window(800, 600, "Game", new Game());
-    }
 }
