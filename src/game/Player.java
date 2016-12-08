@@ -77,7 +77,7 @@ public class Player extends GameObject{
     }
     
     public void render(Graphics g) {
-        g.setColor(this.playerColor); //change player color
+        g.setColor(Color.GREEN); //change player color
         g.fillRect((int)x,(int)y, (int)width, (int)height);
     }
 
@@ -94,8 +94,11 @@ public class Player extends GameObject{
         return new Rectangle((int)x,(int)y+5, (int)5, (int)height-10);
     }
     
-    public void setPlayerColor(Color playerColor) {
+    /*public void setPlayerColor(Color playerColor) {
         this.playerColor = playerColor;
     }
+    public Color getPlayerColor() {
+        return this.playerColor;
+    }*/
     
 }
